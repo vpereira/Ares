@@ -164,10 +164,8 @@ class CNC(object):
     def bot(self, botid):
         if not validate_botid(botid):
             raise cherrypy.HTTPError(403)
-        with open("Bot.html", "r") as f:
-            html = f.read()
-            html = html.replace("{{botid}}", botid)
-            return html
+        bot_template = Template(filename="Bot.html")
+        return bot_template.render(botid=botid)
 
 
 class API(object):

