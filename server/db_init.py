@@ -19,7 +19,7 @@ UNIQUE(name))
 
 cursor.execute("""
 CREATE TABLE output(
-id integer primary key, 
+id integer primary key,
 date integer,
 out text,
 bot text,

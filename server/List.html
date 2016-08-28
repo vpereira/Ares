@@ -28,7 +28,23 @@
 
           <table>
           <tr><th>Name</th><th>Last Online</th><th>IP</th><th>OS</th><th>Sel.</th></tr>
-          {{bot_table}}
+          <%
+            import time
+            def online_or_time(timestamp):
+              if time.time() - 30 < timestamp:
+                return "Online"
+              else:
+                return time.ctime(timestamp)
+          %>
+          % for bot in bots:
+            <tr>
+              <td><a href="bot?botid=${bot[0]}">${bot[0]}</a></td>
+              <td>${online_or_time(bot[1])}</td>
+              <td>${bot[2]}</td>
+              <td>${bot[3]}</td>
+              <td><input type="checkbox" id="${bot[0]}" class="botid" /></td>
+            </tr>
+          % endfor
           </table>
       </section>
     </div>
